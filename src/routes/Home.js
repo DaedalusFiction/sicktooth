@@ -38,10 +38,15 @@ const Home = () => {
                 const xhr = new XMLHttpRequest();
                 xhr.responseType = "text";
                 xhr.onload = (event) => {
-                    const markdowntext = xhr.response;
-                    // console.log(markdowntext);
+                    let charLength;
+                    if (index === 0) {
+                        charLength = 650;
+                    } else {
+                        charLength = 250;
+                    }
+                    let markdowntext =
+                        xhr.response.slice(0, charLength).trim() + "...";
                     const body = marked.parse(markdowntext);
-
                     document.getElementById(
                         `${newStories[index].title}`
                     ).innerHTML = body;
@@ -65,13 +70,13 @@ const Home = () => {
                     <Typography variant="h4" component="h2">
                         {stories && stories[0].title}
                     </Typography>
-                    <Typography gutterBottom>
-                        {stories && stories[0].author}
+                    <Typography sx={{ marginBottom: "1.5em" }}>
+                        by {stories && stories[0].author}
                     </Typography>
-                    <div
+                    <Typography
                         id={stories && stories[0].title}
                         className="story-body"
-                    ></div>
+                    ></Typography>
                     <Box sx={{ display: "flex", justifyContent: "end" }}>
                         <ContinueReadingButton story="submit" />
                     </Box>
@@ -106,10 +111,13 @@ const Home = () => {
                                 <Typography variant="h5">
                                     {stories[index].title}
                                 </Typography>
-                                <Typography gutterBottom>
-                                    {stories[index].author}
+                                <Typography sx={{ marginBottom: "1.5em" }}>
+                                    by {stories[index].author}
                                 </Typography>
-                                <div id={stories[index].title}></div>
+                                <Typography
+                                    id={stories[index].title}
+                                    sx={{}}
+                                ></Typography>
                                 <Box
                                     sx={{
                                         display: "flex",
