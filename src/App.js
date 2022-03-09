@@ -1,4 +1,4 @@
-import { Box, Container, createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Archive from "./routes/Archive";
@@ -8,16 +8,21 @@ import Submit from "./routes/Submit";
 import Editors from "./routes/Editors";
 import NoPage from "./routes/NoPage";
 import { BrowserRouter } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { collection, doc, getDoc } from "firebase/firestore";
-import { ref, getDownloadURL, getBytes } from "firebase/storage";
-import { db, storage } from "./firebase";
-import { marked } from "marked";
+import Admin from "./routes/Admin";
+import { deepOrange, grey } from "@mui/material/colors";
 
-const matter = require("gray-matter");
+import { CssBaseline } from "@mui/material/";
+import Stories from "./routes/Stories";
+import Story from "./routes/Story";
 
 const theme = createTheme({
     palette: {
+        background: {
+            default: "rgb(37, 37, 37)",
+        },
+        text: {
+            primary: "rgb(224, 213, 207)",
+        },
         primary: {
             main: "rgb(37, 37, 37)",
         },
@@ -30,6 +35,7 @@ const theme = createTheme({
 function App() {
     return (
         <ThemeProvider theme={theme}>
+            <CssBaseline />
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout />}>
@@ -37,7 +43,11 @@ function App() {
                         <Route path="submit" element={<Submit />} />
                         <Route path="archive" element={<Archive />} />
                         <Route path="editors" element={<Editors />} />
-                        <Route path="nopage" element={<NoPage />} />
+                        <Route path="admin" element={<Admin />} />
+                        <Route path="stories" element={<Stories />}>
+                            <Route path=":title" element={<Story />} />
+                        </Route>
+                        <Route path="*" element={<NoPage />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

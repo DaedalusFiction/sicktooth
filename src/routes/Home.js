@@ -6,56 +6,52 @@ import {
     Typography,
     Button,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-import { BsArrowRight } from "react-icons/bs";
 import ContinueReadingButton from "../components/ContinueReadingButton";
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc } from "firebase/firestore";
+import {
+    collection,
+    doc,
+    getDoc,
+    query,
+    orderBy,
+    limit,
+    getDocs,
+} from "firebase/firestore";
 import { ref, getDownloadURL, getBytes } from "firebase/storage";
 import { db, storage } from "../firebase";
 import { marked } from "marked";
 
 const Home = () => {
-    const [heroStory, setHeroStory] = useState(null);
+    const [stories, setStories] = useState(null);
     useEffect(() => {
         async function getStories() {
-            const docRef = doc(db, "stories", "test");
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                const author = docSnap.data().author;
-                const title = docSnap.data().title;
-                console.log(docSnap.data().author);
+            const q = query(
+                collection(db, "stories"),
+                orderBy("createdAt", "desc"),
+                limit(4)
+            );
 
-                getDownloadURL(ref(storage, "stories/test.md"))
-                    .then((url) => {
-                        // `url` is the download URL for 'images/stars.jpg'
-                        // console.log(url);
+            const docsSnap = await getDocs(q);
+            let newStories = [];
+            docsSnap.docs.forEach((doc, index) => {
+                newStories = [...newStories, doc.data()];
+                const xhr = new XMLHttpRequest();
+                xhr.responseType = "text";
+                xhr.onload = (event) => {
+                    const markdowntext = xhr.response;
+                    // console.log(markdowntext);
+                    const body = marked.parse(markdowntext);
 
-                        const xhr = new XMLHttpRequest();
-                        xhr.responseType = "text";
-                        xhr.onload = (event) => {
-                            const markdowntext = xhr.response;
-
-                            const body = marked.parse(markdowntext);
-                            console.log(title);
-                            setHeroStory({
-                                title: title,
-                                author: author,
-                                body: body,
-                            });
-                            document.getElementById("heroStoryBody").innerHTML =
-                                body;
-                        };
-                        xhr.open("GET", url);
-                        xhr.send();
-
-                        // console.log(html);
-                    })
-                    .catch((error) => {
-                        // Handle any errors
-                    });
-            }
+                    document.getElementById(
+                        `${newStories[index].title}`
+                    ).innerHTML = body;
+                };
+                xhr.open("GET", doc.data().url);
+                xhr.send();
+            });
+            setStories(newStories);
         }
+
         getStories();
     }, []);
 
@@ -63,13 +59,19 @@ const Home = () => {
         <Container>
             <Grid container spacing={4}>
                 <Grid item xs={12} sm={5} sx={{ marginBottom: "1em" }}>
+                    <Typography gutterBottom>
+                        {stories && stories[0].createdAt}
+                    </Typography>
                     <Typography variant="h4" component="h2">
-                        {heroStory && heroStory.title}
+                        {stories && stories[0].title}
                     </Typography>
                     <Typography gutterBottom>
-                        by {heroStory && heroStory.author}
+                        {stories && stories[0].author}
                     </Typography>
-                    <div id="heroStoryBody" className="story-body"></div>
+                    <div
+                        id={stories && stories[0].title}
+                        className="story-body"
+                    ></div>
                     <Box sx={{ display: "flex", justifyContent: "end" }}>
                         <ContinueReadingButton story="submit" />
                     </Box>
@@ -88,50 +90,38 @@ const Home = () => {
                         A Literary Magazine for Unhealthy People
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3} sx={{ borderTop: "1px solid" }}>
-                    <Typography variant="h5">Blue Jays</Typography>
-                    <Typography gutterBottom>by David Sorensen</Typography>
-                    <Typography>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Quae rerum, libero, placeat praesentium
-                        consequuntur ut aut at eum explicabo assumenda laborum
-                        dolorum optio omnis quibusdam magni ipsam ipsum ratione
-                        sit! Quisquam provident tempore dolorum obcaecati,
-                    </Typography>
-                    <Box sx={{ display: "flex", justifyContent: "end" }}>
-                        <ContinueReadingButton story="submit" />
-                    </Box>
-                </Grid>
 
-                <Grid item xs={12} md={3} sx={{ borderTop: "1px solid" }}>
-                    <Typography variant="h5">1301 Gradus</Typography>
-                    <Typography gutterBottom>by David Sorensen</Typography>
-                    <Typography>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Quae rerum, libero, placeat praesentium
-                        consequuntur ut aut at eum explicabo assumenda laborum
-                        dolorum optio omnis quibusdam magni ipsam ipsum ratione
-                        sit! Quisquam provident tempore dolorum obcaecati,
-                    </Typography>
-                    <Box sx={{ display: "flex", justifyContent: "end" }}>
-                        <ContinueReadingButton story="submit" />
-                    </Box>
-                </Grid>
+                {stories &&
+                    stories.map((story, index) => {
+                        if (index === 0) {
+                            return <p></p>;
+                        }
+                        return (
+                            <Grid
+                                item
+                                xs={12}
+                                md={3}
+                                sx={{ borderTop: "1px solid" }}
+                            >
+                                <Typography variant="h5">
+                                    {stories[index].title}
+                                </Typography>
+                                <Typography gutterBottom>
+                                    {stories[index].author}
+                                </Typography>
+                                <div id={stories[index].title}></div>
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "end",
+                                    }}
+                                >
+                                    <ContinueReadingButton story="submit" />
+                                </Box>
+                            </Grid>
+                        );
+                    })}
 
-                <Grid item xs={12} md={3} sx={{ borderTop: "1px solid" }}>
-                    <Typography variant="h5">Charlie the Robot</Typography>
-                    <Typography gutterBottom>by David Sorensen</Typography>
-                    <Typography>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Quae rerum, libero, placeat praesentium
-                        consequuntur ut aut at eum explicabo assumenda laborum
-                        dolorum optio omnis quibusdam magni ipsam ipsum ratione
-                        sit! Quisquam provident tempore dolorum obcaecati,
-                    </Typography>
-                    <Box sx={{ display: "flex", justifyContent: "end" }}>
-                        <ContinueReadingButton story="submit" />
-                    </Box>
-                </Grid>
                 <Grid item xs={12} md={3}>
                     <Typography variant="h6">Social Media</Typography>
                 </Grid>

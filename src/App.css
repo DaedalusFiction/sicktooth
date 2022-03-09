@@ -14,10 +14,6 @@
     --fc-light: rgb(224, 213, 207);
 }
 
-body {
-    background-color: var(--bg-dark);
-}
-
 p {
     line-height: 1.3em !important;
 }
