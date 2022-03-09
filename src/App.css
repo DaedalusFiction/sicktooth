@@ -42,6 +42,11 @@ a {
     text-decoration: none;
 }
 
+.text-minor {
+    font-size: 0.85em !important;
+    color: rgb(189, 179, 174) !important;
+}
+
 .arrow-right {
     transform: translateY(2px);
 }

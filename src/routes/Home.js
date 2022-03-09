@@ -21,20 +21,10 @@ import { ref, getDownloadURL, getBytes } from "firebase/storage";
 import { db, storage } from "../firebase";
 import { marked } from "marked";
 
-const Home = () => {
-    const [stories, setStories] = useState(null);
+const Home = ({ stories }) => {
     useEffect(() => {
-        async function getStories() {
-            const q = query(
-                collection(db, "stories"),
-                orderBy("createdAt", "desc"),
-                limit(4)
-            );
-
-            const docsSnap = await getDocs(q);
-            let newStories = [];
-            docsSnap.docs.forEach((doc, index) => {
-                newStories = [...newStories, doc.data()];
+        async function showStories() {
+            stories.forEach((story, index) => {
                 const xhr = new XMLHttpRequest();
                 xhr.responseType = "text";
                 xhr.onload = (event) => {
@@ -48,29 +38,31 @@ const Home = () => {
                         xhr.response.slice(0, charLength).trim() + "...";
                     const body = marked.parse(markdowntext);
                     document.getElementById(
-                        `${newStories[index].title}`
+                        `${stories[index].title}`
                     ).innerHTML = body;
                 };
-                xhr.open("GET", doc.data().url);
+                xhr.open("GET", story.url);
                 xhr.send();
             });
-            setStories(newStories);
         }
-
-        getStories();
-    }, []);
-
+        if (stories) {
+            showStories();
+        }
+    }, [stories]);
     return (
         <Container>
             <Grid container spacing={4}>
                 <Grid item xs={12} sm={5} sx={{ marginBottom: "1em" }}>
-                    <Typography gutterBottom>
+                    <Typography gutterBottom className="text-minor">
                         {stories && stories[0].createdAt}
                     </Typography>
                     <Typography variant="h4" component="h2">
                         {stories && stories[0].title}
                     </Typography>
-                    <Typography sx={{ marginBottom: "1.5em" }}>
+                    <Typography
+                        sx={{ marginBottom: "1.5em" }}
+                        className="text-minor"
+                    >
                         by {stories && stories[0].author}
                     </Typography>
                     <Typography
@@ -78,7 +70,7 @@ const Home = () => {
                         className="story-body"
                     ></Typography>
                     <Box sx={{ display: "flex", justifyContent: "end" }}>
-                        <ContinueReadingButton story="submit" />
+                        <ContinueReadingButton story={stories[0].title} />
                     </Box>
                 </Grid>
                 <Grid
@@ -99,22 +91,30 @@ const Home = () => {
                 {stories &&
                     stories.map((story, index) => {
                         if (index === 0) {
-                            return <p></p>;
+                            return <p key={index}></p>;
                         }
                         return (
                             <Grid
                                 item
+                                key={index}
                                 xs={12}
                                 md={3}
                                 sx={{ borderTop: "1px solid" }}
                             >
+                                <Typography gutterBottom className="text-minor">
+                                    {stories && stories[0].createdAt}
+                                </Typography>
                                 <Typography variant="h5">
                                     {stories[index].title}
                                 </Typography>
-                                <Typography sx={{ marginBottom: "1.5em" }}>
+                                <Typography
+                                    className="text-minor"
+                                    sx={{ marginBottom: "1.5em" }}
+                                >
                                     by {stories[index].author}
                                 </Typography>
                                 <Typography
+                                    className="story-body"
                                     id={stories[index].title}
                                     sx={{}}
                                 ></Typography>
@@ -124,7 +124,9 @@ const Home = () => {
                                         justifyContent: "end",
                                     }}
                                 >
-                                    <ContinueReadingButton story="submit" />
+                                    <ContinueReadingButton
+                                        story={stories[index].title}
+                                    />
                                 </Box>
                             </Grid>
                         );
