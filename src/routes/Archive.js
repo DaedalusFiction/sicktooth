@@ -22,7 +22,7 @@ const Archive = () => {
             const q = query(
                 collection(db, "stories"),
                 orderBy("createdAt", "desc"),
-                limit(4)
+                limit(25)
             );
 
             const docsSnap = await getDocs(q);
@@ -68,14 +68,18 @@ const Archive = () => {
                                 sx={{ margin: "1em 0" }}
                             >
                                 <Typography gutterBottom className="text-minor">
-                                    {stories && stories[0].createdAt}
+                                    [ficition]
+                                    {/* {stories && stories[0].createdAt} */}
                                 </Typography>
                                 <Typography variant="h5">
                                     {stories[index].title}
                                 </Typography>
                                 <Typography
                                     className="text-minor"
-                                    sx={{ marginBottom: "1.5em" }}
+                                    sx={{
+                                        marginBottom: "1.5em",
+                                        fontStyle: "italic",
+                                    }}
                                 >
                                     by {stories[index].author}
                                 </Typography>

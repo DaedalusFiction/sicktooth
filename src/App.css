@@ -54,3 +54,12 @@ a {
 .story-body > * {
     margin: 0.5em 0;
 }
+
+.drop-cap p:first-child:first-letter {
+    color: #903;
+    float: left;
+    font-family: Georgia;
+    font-size: 5em;
+    line-height: 0.6em;
+    padding: 0.12em 0.1em 0 0;
+}
