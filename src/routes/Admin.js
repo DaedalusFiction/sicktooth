@@ -26,10 +26,6 @@ const Admin = () => {
     const [genre, setGenre] = useState("");
     const [date, setDate] = useState(null);
 
-    const handleGenreChange = (e) => {
-        setGenre(e.target.value);
-    };
-
     const upload = async () => {
         const author = document.getElementById("author").value;
         const title = document.getElementById("title").value;
@@ -55,6 +51,10 @@ const Admin = () => {
                 });
             }
         );
+    };
+
+    const handleGenreChange = (e) => {
+        setGenre(e.target.value);
     };
 
     const handleFileInputChange = (e) => {
