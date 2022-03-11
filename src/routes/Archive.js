@@ -14,6 +14,7 @@ import { ref, getDownloadURL, getBytes } from "firebase/storage";
 import { db, storage } from "../firebase";
 import { marked } from "marked";
 import ContinueReadingButton from "../components/ContinueReadingButton";
+import StoryPreview from "../components/StoryPreview";
 
 const Archive = () => {
     const [stories, setStories] = useState(null);
@@ -59,46 +60,11 @@ const Archive = () => {
                 {stories &&
                     stories.map((story, index) => {
                         return (
-                            <Grid
-                                item
+                            <StoryPreview
+                                story={story}
+                                size="small"
                                 key={index}
-                                xs={12}
-                                sm={6}
-                                md={4}
-                                sx={{ margin: "1em 0" }}
-                            >
-                                <Typography gutterBottom className="text-minor">
-                                    [ficition]
-                                    {/* {stories && stories[0].createdAt} */}
-                                </Typography>
-                                <Typography variant="h5">
-                                    {stories[index].title}
-                                </Typography>
-                                <Typography
-                                    className="text-minor"
-                                    sx={{
-                                        marginBottom: "1.5em",
-                                        fontStyle: "italic",
-                                    }}
-                                >
-                                    by {stories[index].author}
-                                </Typography>
-                                <Typography
-                                    className="story-body"
-                                    id={stories[index].title}
-                                    sx={{}}
-                                ></Typography>
-                                <Box
-                                    sx={{
-                                        display: "flex",
-                                        justifyContent: "end",
-                                    }}
-                                >
-                                    <ContinueReadingButton
-                                        story={stories[index].title}
-                                    />
-                                </Box>
-                            </Grid>
+                            />
                         );
                     })}
             </Grid>

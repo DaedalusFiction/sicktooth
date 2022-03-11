@@ -63,3 +63,7 @@ a {
     line-height: 0.6em;
     padding: 0.12em 0.1em 0 0;
 }
+
+.select-item {
+    color: var(--bg-dark) !important;
+}

@@ -119,16 +119,36 @@ const Header = () => {
                                 display: { xs: "block", md: "none" },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                >
-                                    <Typography textAlign="center">
-                                        {page}
+                            <Link to="/">
+                                <MenuItem onClick={handleCloseNavMenu}>
+                                    <Typography
+                                        textAlign="center"
+                                        color="primary"
+                                    >
+                                        Home
                                     </Typography>
                                 </MenuItem>
-                            ))}
+                            </Link>
+                            <Link to="/archive">
+                                <MenuItem onClick={handleCloseNavMenu}>
+                                    <Typography
+                                        textAlign="center"
+                                        color="primary"
+                                    >
+                                        Archive
+                                    </Typography>
+                                </MenuItem>
+                            </Link>
+                            <Link to="/submit">
+                                <MenuItem onClick={handleCloseNavMenu}>
+                                    <Typography
+                                        textAlign="center"
+                                        color="primary"
+                                    >
+                                        Submit
+                                    </Typography>
+                                </MenuItem>
+                            </Link>
                         </Menu>
                     </Box>
                 </Box>
