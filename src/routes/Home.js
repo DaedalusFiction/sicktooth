@@ -5,6 +5,7 @@ import {
     Grid,
     Typography,
     Button,
+    Divider,
 } from "@mui/material";
 import ContinueReadingButton from "../components/ContinueReadingButton";
 
@@ -15,7 +16,7 @@ const Home = () => {
     const stories = useGetStories(4);
     return (
         <Container>
-            <Grid container spacing={4}>
+            <Grid container spacing={2}>
                 {stories && <StoryPreview story={stories[0]} size="large" />}
                 <Grid
                     item
@@ -31,7 +32,9 @@ const Home = () => {
                         A Literary Magazine for Unhealthy People
                     </Typography>
                 </Grid>
-
+                <Grid item sm={12}>
+                    <Box sx={{ borderTop: "1px solid" }}></Box>
+                </Grid>
                 {stories &&
                     stories.map((story, index) => {
                         if (index === 0) {

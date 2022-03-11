@@ -82,8 +82,14 @@ const Story = () => {
                         {stories &&
                             stories.map((story) => {
                                 return (
-                                    <Link to={`/stories/${story.id}`}>
+                                    <Link
+                                        key={story.id}
+                                        to={`/stories/${story.id}`}
+                                    >
                                         <Box
+                                            onClick={() => {
+                                                window.scrollTo(0, 0);
+                                            }}
                                             sx={[
                                                 {
                                                     padding: ".5em",

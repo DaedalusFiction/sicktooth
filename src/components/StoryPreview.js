@@ -22,12 +22,7 @@ const StoryPreview = ({ story, size }) => {
     }, [size, story.title, story.url, story.id]);
 
     return (
-        <Grid
-            item
-            xs={12}
-            md={size === "small" ? 3 : 5}
-            sx={size === "small" && { borderTop: "1px solid" }}
-        >
+        <Grid item xs={12} md={size === "small" ? 3 : 5}>
             <Box
                 sx={[
                     {
@@ -46,25 +41,27 @@ const StoryPreview = ({ story, size }) => {
                 <Link to={`/stories/${story.id}`}>
                     <Typography gutterBottom className="text-minor">
                         [{story.genre}]
-                        <Typography variant="h5">{story.title}</Typography>
-                        <Typography
-                            className="text-minor"
-                            sx={{
-                                marginBottom: "1.5em",
-                                fontStyle: "italic",
-                            }}
-                        >
-                            by {story.author}
-                        </Typography>
-                        <div
-                            id={story.id}
-                            className={
-                                size === "small"
-                                    ? "story-preview-small"
-                                    : "story-preview-large drop-cap"
-                            }
-                        ></div>
                     </Typography>
+                    <Typography variant={size === "small" ? "h5" : "h4"}>
+                        {story.title}
+                    </Typography>
+                    <Typography
+                        className="text-minor"
+                        sx={{
+                            marginBottom: "1.5em",
+                            fontStyle: "italic",
+                        }}
+                    >
+                        by {story.author}
+                    </Typography>
+                    <div
+                        id={story.id}
+                        className={
+                            size === "small"
+                                ? "story-preview-small"
+                                : "story-preview-large drop-cap"
+                        }
+                    ></div>
                 </Link>
             </Box>
         </Grid>

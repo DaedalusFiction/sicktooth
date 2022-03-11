@@ -53,20 +53,24 @@ const Header = () => {
                         margin: ".5em 0",
                     }}
                 >
-                    <Box
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                        }}
-                    >
-                        <Typography variant="h6" component="p">
-                            SICK
-                        </Typography>
-                        <FaTooth style={{ color: "white", margin: "0 .5em" }} />
-                        <Typography variant="h6" component="p">
-                            TOOTH
-                        </Typography>
-                    </Box>
+                    <Link to="/">
+                        <Box
+                            sx={{
+                                display: "flex",
+                                alignItems: "center",
+                            }}
+                        >
+                            <Typography variant="h6" component="p">
+                                SICK
+                            </Typography>
+                            <FaTooth
+                                style={{ color: "white", margin: "0 .5em" }}
+                            />
+                            <Typography variant="h6" component="p">
+                                TOOTH
+                            </Typography>
+                        </Box>
+                    </Link>
                     <Box sx={{ display: { xs: "none", md: "flex" } }}>
                         <Link to="submit">
                             <Button variant="text" color="secondary">

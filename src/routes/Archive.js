@@ -8,8 +8,8 @@ const Archive = () => {
     const stories = useGetStories(20);
     return (
         <Container>
-            <Typography variant="h2" gutterBottom>
-                Archives
+            <Typography variant="h2" sx={{ marginBottom: "1em" }}>
+                Archive
             </Typography>
             <Grid container spacing={4}>
                 {stories &&
