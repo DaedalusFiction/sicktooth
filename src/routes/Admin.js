@@ -42,7 +42,9 @@ const Admin = () => {
             (error) => {},
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    setDoc(doc(collection(db, "stories")), {
+                    const docRef = doc(collection(db, "stories"));
+                    setDoc(docRef, {
+                        id: docRef.id,
                         author: author,
                         title: title,
                         genre: genre,

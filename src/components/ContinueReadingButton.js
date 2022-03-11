@@ -4,7 +4,7 @@ import { BsArrowRight } from "react-icons/bs";
 
 const ContinueReadingButton = ({ story }) => {
     return (
-        <Link to={`/stories/${story}`}>
+        <Link to={`/stories/${story.id}`}>
             <Button
                 variant="text"
                 color="secondary"

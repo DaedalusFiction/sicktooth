@@ -18,6 +18,7 @@ function useGetStories(maxNumber) {
             let newStories = [];
             docsSnap.docs.forEach((doc, index) => {
                 newStories = [...newStories, doc.data()];
+                // console.log(doc.data());
             });
             setStories(newStories);
         }

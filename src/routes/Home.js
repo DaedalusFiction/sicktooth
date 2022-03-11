@@ -27,7 +27,7 @@ const Home = () => {
                         alignItems: "center",
                     }}
                 >
-                    <Typography>
+                    <Typography sx={{ fontSize: "1.3rem" }}>
                         A Literary Magazine for Unhealthy People
                     </Typography>
                 </Grid>

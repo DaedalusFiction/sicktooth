@@ -44,7 +44,7 @@ function App() {
                         <Route path="editors" element={<Editors />} />
                         <Route path="admin" element={<Admin />} />
                         <Route path="stories" element={<Stories />}>
-                            <Route path=":title" element={<Story />} />
+                            <Route path=":id" element={<Story />} />
                         </Route>
                         <Route path="*" element={<NoPage />} />
                     </Route>
