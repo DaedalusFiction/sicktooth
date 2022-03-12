@@ -6,7 +6,6 @@ function useGetStories(maxNumber) {
     const [stories, setStories] = useState(null);
 
     useEffect(() => {
-        console.log("running getStories");
         async function getStories() {
             const q = query(
                 collection(db, "stories"),

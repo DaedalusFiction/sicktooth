@@ -1,4 +1,4 @@
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import ContinueReadingButton from "./ContinueReadingButton";
 
@@ -11,7 +11,7 @@ const StoryPreview = ({ story, size }) => {
         const xhr = new XMLHttpRequest();
         xhr.responseType = "text";
         xhr.onload = (event) => {
-            const charLength = size === "small" ? 150 : 450;
+            const charLength = size === "small" ? 200 : 450;
             let markdowntext = xhr.response.slice(0, charLength).trim() + "...";
             const newBody = marked.parse(markdowntext);
             setBody(newBody);

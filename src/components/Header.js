@@ -72,6 +72,11 @@ const Header = () => {
                         </Box>
                     </Link>
                     <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                        <Link to="about">
+                            <Button variant="text" color="secondary">
+                                About
+                            </Button>
+                        </Link>
                         <Link to="submit">
                             <Button variant="text" color="secondary">
                                 Submit
@@ -130,6 +135,16 @@ const Header = () => {
                                         color="primary"
                                     >
                                         Home
+                                    </Typography>
+                                </MenuItem>
+                            </Link>
+                            <Link to="/about">
+                                <MenuItem onClick={handleCloseNavMenu}>
+                                    <Typography
+                                        textAlign="center"
+                                        color="primary"
+                                    >
+                                        About
                                     </Typography>
                                 </MenuItem>
                             </Link>

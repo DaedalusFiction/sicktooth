@@ -16,6 +16,27 @@ const Home = () => {
     const stories = useGetStories(4);
     return (
         <Container>
+            <Grid
+                item
+                xs={12}
+                sm={12}
+                sx={{
+                    display: { xs: "flex", md: "none" },
+                    justifyContent: "center",
+                }}
+            >
+                <Typography>A Literary Magazine for</Typography>
+                <Typography
+                    sx={{
+                        color: "rgb(153, 0, 51)",
+                        margin: "0 .5em",
+                        fontWeight: "bold",
+                    }}
+                >
+                    Unhealthy
+                </Typography>
+                <Typography>People</Typography>
+            </Grid>
             <Grid container spacing={2}>
                 {stories && <StoryPreview story={stories[0]} size="large" />}
                 <Grid
@@ -23,16 +44,24 @@ const Home = () => {
                     xs={12}
                     sm={7}
                     sx={{
-                        display: "flex",
+                        display: { xs: "none", md: "flex" },
                         justifyContent: "end",
                         alignItems: "center",
                     }}
                 >
-                    <Typography sx={{ fontSize: "1.3rem" }}>
-                        A Literary Magazine for Unhealthy People
+                    <Typography>A Literary Magazine for</Typography>
+                    <Typography
+                        sx={{
+                            color: "rgb(153, 0, 51)",
+                            margin: "0 .5em",
+                            fontWeight: "bold",
+                        }}
+                    >
+                        Unhealthy
                     </Typography>
+                    <Typography>People</Typography>
                 </Grid>
-                <Grid item sm={12}>
+                <Grid item xs={12}>
                     <Box sx={{ borderTop: "1px solid" }}></Box>
                 </Grid>
                 {stories &&

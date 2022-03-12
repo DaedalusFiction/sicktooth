@@ -63,13 +63,22 @@ a {
     font-size: 1rem;
 }
 
+/* .story-preview-small,
+.story-preview-large {
+    position: relative;
+} */
+
+.read-more-box {
+    position: relative;
+}
+
 hr {
     border: none;
     padding: 0.5rem;
 }
 
 .drop-cap p:first-child:first-letter {
-    color: #903;
+    color: rgb(153, 0, 51);
     float: left;
     font-family: Georgia;
     font-size: 5em;
@@ -78,6 +87,7 @@ hr {
 }
 
 .select-item,
-.text-input {
+.text-input,
+.text-input * {
     color: var(--bg-dark) !important;
 }
