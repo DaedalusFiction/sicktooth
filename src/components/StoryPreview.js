@@ -13,6 +13,7 @@ const StoryPreview = ({ story, size }) => {
         xhr.onload = (event) => {
             const charLength = size === "small" ? 200 : 750;
             let markdowntext = xhr.response.slice(0, charLength).trim() + "...";
+            console.log(markdowntext);
             const newBody = marked.parse(markdowntext);
             setBody(newBody);
             document.getElementById(story.id).innerHTML = newBody;

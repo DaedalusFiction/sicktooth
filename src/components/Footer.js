@@ -1,8 +1,12 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineCopyrightCircle } from "react-icons/ai";
 
 const Footer = () => {
+    const handleClick = () => {
+        window.scrollTo(0, 0);
+    };
     return (
         <Container sx={{ borderTop: "1px solid", marginTop: "3em" }}>
             <Box
@@ -12,9 +16,15 @@ const Footer = () => {
                     justifyContent: "space-between",
                 }}
             >
-                <Typography>Copyright 2022 by SICKTOOTH </Typography>
+                <Typography className="icon-copyright">
+                    Copyright <AiOutlineCopyrightCircle /> 2022 by SICKTOOTH
+                </Typography>
                 <Link to="/">
-                    <Button variant="text" color="secondary">
+                    <Button
+                        variant="text"
+                        color="secondary"
+                        onClick={handleClick}
+                    >
                         Home
                     </Button>
                 </Link>

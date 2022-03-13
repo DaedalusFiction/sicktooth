@@ -7,10 +7,10 @@ import {
     Button,
     Divider,
 } from "@mui/material";
-import ContinueReadingButton from "../components/ContinueReadingButton";
 
 import useGetStories from "../hooks/useGetStories";
 import StoryPreview from "../components/StoryPreview";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     const stories = useGetStories(4);
@@ -50,15 +50,24 @@ const Home = () => {
                     }}
                 >
                     <Typography>A Literary Magazine for</Typography>
-                    <Typography
-                        sx={{
-                            color: "rgb(153, 0, 51)",
-                            margin: "0 .5em 0 .5em",
-                            fontWeight: "bold",
-                        }}
-                    >
-                        Unhealthy
-                    </Typography>
+                    <Link to="/about">
+                        <Typography
+                            sx={[
+                                {
+                                    color: "rgb(153, 0, 51)",
+                                    margin: "0 .5em 0 .5em",
+                                    fontWeight: "bold",
+                                },
+                                {
+                                    "&:hover": {
+                                        color: "rgb(0, 153, 13)",
+                                    },
+                                },
+                            ]}
+                        >
+                            Unhealthy
+                        </Typography>
+                    </Link>
                     <Typography>People</Typography>
                 </Grid>
                 <Grid item xs={12}>

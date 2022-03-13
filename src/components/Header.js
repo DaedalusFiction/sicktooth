@@ -10,9 +10,9 @@ import {
 import { Box } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { FaTooth } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const Header = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);

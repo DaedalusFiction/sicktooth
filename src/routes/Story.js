@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from "@mui/material";
+import { Container, Divider, Grid, Typography } from "@mui/material";
 import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -8,6 +8,7 @@ import { marked } from "marked";
 import useGetStories from "../hooks/useGetStories";
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
+import { HorizontalRule } from "@mui/icons-material";
 
 const Story = () => {
     const [story, setStory] = useState(null);
@@ -45,7 +46,11 @@ const Story = () => {
                     <Typography sx={{ textAlign: "center" }}>
                         [{story.genre}]
                     </Typography>
-                    <Typography variant="h3" sx={{ textAlign: "center" }}>
+                    <Typography
+                        variant="h3"
+                        gutterBottom
+                        sx={{ textAlign: "center" }}
+                    >
                         {story.title}
                     </Typography>
                     <Typography
@@ -120,6 +125,9 @@ const Story = () => {
                     </Box>
                 </Grid>
             </Grid>
+            <Typography sx={{ margin: "3em", maxWidth: "75ch" }}>
+                {story && "[" + story.bio + "]"}
+            </Typography>
         </Container>
     );
 };

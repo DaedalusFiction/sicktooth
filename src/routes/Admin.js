@@ -26,6 +26,7 @@ const Admin = () => {
     const [file, setFile] = useState(null);
     const [genre, setGenre] = useState("");
     const [date, setDate] = useState(null);
+    const [bio, setBio] = useState("");
 
     const [currentUser, setCurrentUser] = useState(null);
 
@@ -81,6 +82,7 @@ const Admin = () => {
                                 createdAt: Date.now(),
                                 date: date,
                                 url: downloadURL,
+                                bio: bio,
                             });
                         }
                     );
@@ -103,6 +105,10 @@ const Admin = () => {
         setFile(e.target.files[0]);
     };
 
+    const handleBioChange = (e) => {
+        setBio(e.target.bio);
+    };
+
     return (
         <Container maxWidth="sm">
             <Button onClick={signIn} color="secondary">
@@ -119,8 +125,17 @@ const Admin = () => {
                         gap: "1em",
                     }}
                 >
-                    <TextField id="author" label="Author" variant="outlined" />
                     <TextField id="title" label="Title" variant="outlined" />
+                    <TextField id="author" label="Author" variant="outlined" />
+                    <TextField
+                        id="bio"
+                        label="Bio"
+                        multiline
+                        value={bio}
+                        onChange={handleBioChange}
+                        minRows={4}
+                        variant="outlined"
+                    />
                     <FormControl>
                         <InputLabel className="select-item" id="genre-label">
                             Genre

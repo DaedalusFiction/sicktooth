@@ -84,3 +84,7 @@ a {
 .text-input * {
     color: var(--bg-dark) !important;
 }
+
+.icon-copyright svg {
+    transform: translateY(3px);
+}
