@@ -48,42 +48,35 @@ a {
     transform: translateY(2px);
 }
 
-.story-body > * {
-    margin: 0.3em 0;
+.story-body > *,
+.story-preview-large > * {
+    margin-bottom: 0.5em;
     line-height: 1.3em;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
-.story-preview-large {
-    font-size: 1.3rem;
-    line-height: 1.3em;
-}
-
-.story-preview-small {
+.story-preview-small > * {
     font-size: 1rem;
+    margin-bottom: 0.5em;
 }
-
-/* .story-preview-small,
-.story-preview-large {
-    position: relative;
-} */
 
 .read-more-box {
     position: relative;
 }
 
-hr {
+/* hr {
     border: none;
     padding: 0.5rem;
-}
+} */
 
 .drop-cap p:first-child:first-letter {
     color: rgb(153, 0, 51);
     float: left;
     font-family: Georgia;
     font-size: 5em;
-    line-height: 0.6em;
-    padding: 0 0.1em 0.05em 0;
+    line-height: 0.7em;
+    padding-right: 0.15em;
+    padding-top: 0.03em;
 }
 
 .select-item,

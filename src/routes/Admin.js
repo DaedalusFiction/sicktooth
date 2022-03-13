@@ -13,44 +13,86 @@ import { DatePicker } from "@mui/lab";
 import { format } from "date-fns";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { storage } from "../firebase";
 import { ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
 import { doc, setDoc, collection } from "firebase/firestore";
-import { db } from "../firebase";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { db, auth, provider } from "../firebase";
 const moment = require("moment");
 
 const Admin = () => {
-    const [file, setFile] = useState();
+    const [file, setFile] = useState(null);
     const [genre, setGenre] = useState("");
     const [date, setDate] = useState(null);
 
-    const upload = async () => {
-        const author = document.getElementById("author").value;
-        const title = document.getElementById("title").value;
+    const [currentUser, setCurrentUser] = useState(null);
 
-        const storageRef = ref(storage, `stories/${file.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, file);
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {},
-            (error) => {},
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    const docRef = doc(collection(db, "stories"));
-                    setDoc(docRef, {
-                        id: docRef.id,
-                        author: author,
-                        title: title,
-                        genre: genre,
-                        createdAt: Date.now(),
-                        date: date,
-                        url: downloadURL,
-                    });
-                });
-            }
-        );
+    const signIn = () => {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential =
+                    GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                setCurrentUser(user);
+                // ...
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.email;
+                // The AuthCredential type that was used.
+                const credential =
+                    GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+    };
+
+    const testbutton = () => {
+        console.log(currentUser.email);
+    };
+
+    const upload = async () => {
+        if (date && file && genre !== "") {
+            const author = document.getElementById("author").value;
+            const title = document.getElementById("title").value;
+
+            const storageRef = ref(storage, `stories/${file.name}`);
+            const uploadTask = uploadBytesResumable(storageRef, file);
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {},
+                (error) => {},
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(
+                        (downloadURL) => {
+                            const docRef = doc(collection(db, "stories"));
+                            setDoc(docRef, {
+                                id: docRef.id,
+                                author: author,
+                                title: title,
+                                genre: genre,
+                                createdAt: Date.now(),
+                                date: date,
+                                url: downloadURL,
+                            });
+                        }
+                    );
+                    console.log("success");
+                    setFile(null);
+                    setGenre("");
+                    setDate(null);
+                }
+            );
+        } else {
+            console.log("one or more fields blank");
+        }
     };
 
     const handleGenreChange = (e) => {
@@ -62,7 +104,13 @@ const Admin = () => {
     };
 
     return (
-        <Container>
+        <Container maxWidth="sm">
+            <Button onClick={signIn} color="secondary">
+                Sign In
+            </Button>
+            <Button onClick={testbutton} color="secondary">
+                test
+            </Button>
             <Paper color="seconary" sx={{ padding: "1em" }}>
                 <Box
                     sx={{

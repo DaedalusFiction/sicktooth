@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <Container sx={{ borderTop: "1px solid", marginTop: "1em" }}>
+        <Container sx={{ borderTop: "1px solid", marginTop: "3em" }}>
             <Box
                 sx={{
                     margin: "0.5em 0",

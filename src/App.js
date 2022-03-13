@@ -5,7 +5,6 @@ import Archive from "./routes/Archive";
 import Home from "./routes/Home";
 import Layout from "./routes/Layout";
 import Submit from "./routes/Submit";
-import Editors from "./routes/Editors";
 import NoPage from "./routes/NoPage";
 import { BrowserRouter } from "react-router-dom";
 import Admin from "./routes/Admin";
@@ -49,7 +48,6 @@ function App() {
                         <Route path="submit" element={<Submit />} />
                         <Route path="about" element={<About />} />
                         <Route path="archive" element={<Archive />} />
-                        <Route path="editors" element={<Editors />} />
                         <Route path="admin" element={<Admin />} />
                         <Route path="stories" element={<Stories />}>
                             <Route path=":id" element={<Story />} />

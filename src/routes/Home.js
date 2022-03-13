@@ -42,7 +42,7 @@ const Home = () => {
                 <Grid
                     item
                     xs={12}
-                    sm={7}
+                    sm={6}
                     sx={{
                         display: { xs: "none", md: "flex" },
                         justifyContent: "end",
@@ -53,7 +53,7 @@ const Home = () => {
                     <Typography
                         sx={{
                             color: "rgb(153, 0, 51)",
-                            margin: "0 .5em",
+                            margin: "0 .5em 0 .5em",
                             fontWeight: "bold",
                         }}
                     >

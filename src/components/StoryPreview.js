@@ -11,7 +11,7 @@ const StoryPreview = ({ story, size }) => {
         const xhr = new XMLHttpRequest();
         xhr.responseType = "text";
         xhr.onload = (event) => {
-            const charLength = size === "small" ? 200 : 450;
+            const charLength = size === "small" ? 200 : 750;
             let markdowntext = xhr.response.slice(0, charLength).trim() + "...";
             const newBody = marked.parse(markdowntext);
             setBody(newBody);
@@ -22,7 +22,7 @@ const StoryPreview = ({ story, size }) => {
     }, [size, story.title, story.url, story.id]);
 
     return (
-        <Grid item xs={12} md={size === "small" ? 3 : 5}>
+        <Grid item xs={12} md={size === "small" ? 3 : 6}>
             <Box
                 sx={[
                     {

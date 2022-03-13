@@ -10,6 +10,7 @@ import {
     Select,
     MenuItem,
     Typography,
+    createTheme,
 } from "@mui/material";
 import { storage } from "../firebase";
 import { ref, uploadBytesResumable } from "firebase/storage";
@@ -89,7 +90,7 @@ const Submit = () => {
 
     return (
         <Container maxWidth="sm">
-            <Paper color="seconary" sx={{ padding: "1em" }}>
+            <Paper sx={{ padding: "1em" }}>
                 <Box
                     sx={{
                         display: "flex",

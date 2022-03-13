@@ -87,11 +87,6 @@ const Header = () => {
                                 Archive
                             </Button>
                         </Link>
-                        <Link to="editors">
-                            <Button variant="text" color="secondary">
-                                Editors
-                            </Button>
-                        </Link>
                     </Box>
                     <Box
                         sx={{
