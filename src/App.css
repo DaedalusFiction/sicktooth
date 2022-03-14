@@ -44,6 +44,10 @@ a {
     color: rgb(189, 179, 174) !important;
 }
 
+.hover-underline:hover {
+    text-decoration: underline;
+}
+
 .arrow-right {
     transform: translateY(2px);
 }

@@ -10,6 +10,7 @@ import {
 
 import useGetStories from "../hooks/useGetStories";
 import StoryPreview from "../components/StoryPreview";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -90,7 +91,35 @@ const Home = () => {
                     })}
 
                 <Grid item xs={12} md={3}>
-                    <Typography variant="h6">Social Media</Typography>
+                    <Typography
+                        className="text-minor"
+                        sx={{ margin: ".5rem 0" }}
+                    >
+                        [Links]
+                    </Typography>
+                    <Box sx={{}}>
+                        <FaFacebook
+                            style={{
+                                color: "rgb(224, 213, 207)",
+                                marginRight: ".5em",
+                            }}
+                        />
+                        <FaTwitter
+                            style={{
+                                color: "rgb(224, 213, 207)",
+                                marginRight: ".5em",
+                            }}
+                        />
+                        <FaInstagram
+                            style={{
+                                color: "rgb(224, 213, 207)",
+                                marginRight: ".5em",
+                            }}
+                        />
+                    </Box>
+                    <Link to="subscribe" className="hover-underline">
+                        Subscribe
+                    </Link>
                 </Grid>
             </Grid>
         </Container>

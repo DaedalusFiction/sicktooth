@@ -1,7 +1,8 @@
+import { Container } from "@mui/material";
 import React from "react";
 
 const NoPage = () => {
-    return <div>Page Not Found. Ruh roh!</div>;
+    return <Container>Page Not Found!</Container>;
 };
 
 export default NoPage;

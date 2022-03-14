@@ -5,6 +5,7 @@ import Archive from "./routes/Archive";
 import Home from "./routes/Home";
 import Layout from "./routes/Layout";
 import Submit from "./routes/Submit";
+import Subscribe from "./routes/Subscribe";
 import NoPage from "./routes/NoPage";
 import { BrowserRouter } from "react-router-dom";
 import Admin from "./routes/Admin";
@@ -49,6 +50,7 @@ function App() {
                         <Route path="about" element={<About />} />
                         <Route path="archive" element={<Archive />} />
                         <Route path="admin" element={<Admin />} />
+                        <Route path="subscribe" element={<Subscribe />} />
                         <Route path="stories" element={<Stories />}>
                             <Route path=":id" element={<Story />} />
                         </Route>

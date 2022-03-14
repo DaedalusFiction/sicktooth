@@ -33,8 +33,14 @@ const Archive = () => {
     };
 
     const handleSearchChange = (e) => {
-        let newStories = stories.filter((story) =>
-            story.title.toLowerCase().includes(e.target.value.toLowerCase())
+        let newStories = stories.filter(
+            (story) =>
+                story.title
+                    .toLowerCase()
+                    .includes(e.target.value.toLowerCase()) ||
+                story.author
+                    .toLowerCase()
+                    .includes(e.target.value.toLowerCase())
         );
 
         setVisibleStories(newStories);
