@@ -69,7 +69,9 @@ const Admin = () => {
             uploadTask.on(
                 "state_changed",
                 (snapshot) => {},
-                (error) => {},
+                (error) => {
+                    console.log(error.message);
+                },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(
                         (downloadURL) => {
@@ -106,7 +108,7 @@ const Admin = () => {
     };
 
     const handleBioChange = (e) => {
-        setBio(e.target.bio);
+        setBio(e.target.value);
     };
 
     return (

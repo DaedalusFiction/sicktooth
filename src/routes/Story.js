@@ -26,6 +26,9 @@ const Story = () => {
                 xhr.responseType = "text";
                 xhr.onload = (event) => {
                     let markdowntext = xhr.response;
+                    if (markdowntext.charAt(0) === `"`) {
+                        markdowntext = markdowntext.substring(1);
+                    }
                     const newBody = marked.parse(markdowntext);
                     document.getElementById(docSnap.id).innerHTML = newBody;
                 };

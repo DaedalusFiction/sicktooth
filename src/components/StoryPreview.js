@@ -13,6 +13,10 @@ const StoryPreview = ({ story, size }) => {
         xhr.onload = (event) => {
             const charLength = size === "small" ? 200 : 750;
             let markdowntext = xhr.response.slice(0, charLength).trim() + "...";
+            //remove " if first character and preview is large so dropcap works properly
+            if (markdowntext.charAt(0) === `"` && story === "large") {
+                markdowntext = markdowntext.substring(1);
+            }
             console.log(markdowntext);
             const newBody = marked.parse(markdowntext);
             setBody(newBody);
@@ -20,15 +24,14 @@ const StoryPreview = ({ story, size }) => {
         };
         xhr.open("GET", story.url);
         xhr.send();
-    }, [size, story.title, story.url, story.id]);
+    }, [size, story]);
 
     return (
         <Grid item xs={12} md={size === "small" ? 3 : 6}>
             <Box
                 sx={[
                     {
-                        padding: "1em",
-                        marginBottom: "1em",
+                        padding: "0.5em",
                         borderRadius: "3px",
                     },
 

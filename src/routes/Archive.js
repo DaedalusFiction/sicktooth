@@ -5,6 +5,11 @@ import {
     Typography,
     TextField,
     Button,
+    FormControl,
+    FormLabel,
+    FormControlLabel,
+    RadioGroup,
+    Radio,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
@@ -39,10 +44,13 @@ const Archive = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    marginBottom: "3em",
+                    flexWrap: "wrap",
+                    gap: "2em",
                 }}
             >
-                <Typography variant="h2">Archive</Typography>
+                <Typography variant="h2" gutterBottom sx={{ lineHeight: "0" }}>
+                    Archive
+                </Typography>
                 <TextField
                     id="search"
                     label="Search"
@@ -52,6 +60,64 @@ const Archive = () => {
                     variant="outlined"
                 />
             </Box>
+            <FormControl color="secondary" sx={{ margin: "1em 0" }}>
+                <FormLabel
+                    id="genres-label"
+                    sx={{ color: "rgb(224, 213, 207)" }}
+                >
+                    [Genre]
+                </FormLabel>
+                <RadioGroup
+                    aria-labelledby="genres-label"
+                    defaultValue="fiction"
+                    name="genres"
+                    row
+                >
+                    <FormControlLabel
+                        value="fiction"
+                        control={
+                            <Radio
+                                sx={{
+                                    color: "rgb(224, 213, 207)",
+                                    "&.Mui-checked": {
+                                        color: "rgb(224, 213, 207)",
+                                    },
+                                }}
+                            />
+                        }
+                        label="Fiction"
+                    />
+                    <FormControlLabel
+                        value="nonfiction"
+                        control={
+                            <Radio
+                                sx={{
+                                    color: "rgb(224, 213, 207)",
+                                    "&.Mui-checked": {
+                                        color: "rgb(224, 213, 207)",
+                                    },
+                                }}
+                            />
+                        }
+                        label="Non-fiction"
+                    />
+                    <FormControlLabel
+                        value="poetry"
+                        control={
+                            <Radio
+                                sx={{
+                                    color: "rgb(224, 213, 207)",
+                                    "&.Mui-checked": {
+                                        color: "rgb(224, 213, 207)",
+                                    },
+                                }}
+                            />
+                        }
+                        label="Poetry"
+                    />
+                </RadioGroup>
+            </FormControl>
+
             <Grid container spacing={4}>
                 {visibleStories &&
                     visibleStories.map((story, index) => {
