@@ -21,6 +21,17 @@ const Archive = () => {
     const stories = useGetStories(shownStories);
     const [visibleStories, setVisibleStories] = useState(stories);
 
+    const handleGenreChange = (e) => {
+        if (e.target.value === "All") {
+            setVisibleStories(stories);
+        } else {
+            const genre = e.target.value;
+            let newStories = stories.filter((story) => story.genre === genre);
+
+            setVisibleStories(newStories);
+        }
+    };
+
     const handleSearchChange = (e) => {
         let newStories = stories.filter((story) =>
             story.title.toLowerCase().includes(e.target.value.toLowerCase())
@@ -69,12 +80,27 @@ const Archive = () => {
                 </FormLabel>
                 <RadioGroup
                     aria-labelledby="genres-label"
-                    defaultValue="fiction"
                     name="genres"
+                    defaultValue="All"
+                    onChange={handleGenreChange}
                     row
                 >
                     <FormControlLabel
-                        value="fiction"
+                        value="All"
+                        control={
+                            <Radio
+                                sx={{
+                                    color: "rgb(224, 213, 207)",
+                                    "&.Mui-checked": {
+                                        color: "rgb(224, 213, 207)",
+                                    },
+                                }}
+                            />
+                        }
+                        label="All"
+                    />
+                    <FormControlLabel
+                        value="Fiction"
                         control={
                             <Radio
                                 sx={{
@@ -88,7 +114,7 @@ const Archive = () => {
                         label="Fiction"
                     />
                     <FormControlLabel
-                        value="nonfiction"
+                        value="Non-Fiction"
                         control={
                             <Radio
                                 sx={{
@@ -102,7 +128,7 @@ const Archive = () => {
                         label="Non-fiction"
                     />
                     <FormControlLabel
-                        value="poetry"
+                        value="Poetry"
                         control={
                             <Radio
                                 sx={{

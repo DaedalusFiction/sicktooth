@@ -23,6 +23,7 @@ const Home = () => {
                 sx={{
                     display: { xs: "flex", md: "none" },
                     justifyContent: "center",
+                    flexWrap: "wrap",
                 }}
             >
                 <Typography>A Literary Magazine for</Typography>

@@ -17,7 +17,6 @@ const StoryPreview = ({ story, size }) => {
             if (markdowntext.charAt(0) === `"` && story === "large") {
                 markdowntext = markdowntext.substring(1);
             }
-            console.log(markdowntext);
             const newBody = marked.parse(markdowntext);
             setBody(newBody);
             document.getElementById(story.id).innerHTML = newBody;
