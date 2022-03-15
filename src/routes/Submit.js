@@ -134,11 +134,11 @@ const Submit = () => {
                             textAlign: "justify",
                         }}
                     >
-                        Stories submitted must be your own and must be eligible
-                        for publication. We acquire North American publication
-                        rights for a period of one year from time of acceptance.
-                        Writer retains all other rights. A one-time payment of
-                        $25 USD will be remitted upon publication.
+                        Submissions submitted must be your own and unpublished.
+                        We acquire North American publication rights for a
+                        period of one year from time of acceptance. Writer
+                        retains all other rights. A one-time payment of $10 USD
+                        will be remitted upon publication.
                     </Typography>
                     <TextField
                         className="text-input"
