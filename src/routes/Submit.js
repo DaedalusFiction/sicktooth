@@ -14,6 +14,8 @@ import {
 } from "@mui/material";
 import { storage } from "../firebase";
 import { ref, uploadBytesResumable } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
 import Notification from "../components/Notification";
 import emailjs from "@emailjs/browser";
 const Submit = () => {
@@ -22,6 +24,7 @@ const Submit = () => {
     const [title, setTitle] = useState("");
     const [genre, setGenre] = useState("");
     const [file, setFile] = useState(null);
+    const [error, setError] = useState(false);
 
     //Notification
     const [open, setOpen] = useState(false);
@@ -38,15 +41,28 @@ const Submit = () => {
         setTitle(e.target.value);
     };
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
     const handleFileInputChange = (e) => {
         setFile(e.target.files[0]);
     };
 
-    const submitForm = () => {
+    const handleEmailChange = (e) => {
+        if (ValidateEmail(e.target.value)) {
+            setError(false);
+        } else {
+            setError(true);
+        }
+        setEmail(e.target.value);
+    };
+
+    function ValidateEmail(mail) {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+            return true;
+        }
+        console.log("invalid email");
+        return false;
+    }
+
+    const submitForm = async () => {
         console.log("Submit");
         const storageRef = ref(storage, `submissions/${author}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
@@ -58,12 +74,16 @@ const Submit = () => {
                 setOpen(true);
             }
         );
+
         var templateParams = {
             author: author,
             title: title,
             email: email,
             genre: genre,
         };
+
+        const docRef = doc(db, "submissions", author);
+        const uploadDocTask = await setDoc(docRef, templateParams);
 
         emailjs
             .send(
@@ -86,6 +106,7 @@ const Submit = () => {
         setGenre("");
         setEmail("");
         setFile(null);
+        setError(false);
     };
 
     return (
@@ -139,6 +160,7 @@ const Submit = () => {
                         className="text-input"
                         value={email}
                         onChange={handleEmailChange}
+                        error={error}
                         id="email"
                         label="Email"
                         variant="outlined"

@@ -6,6 +6,7 @@ import {
     Typography,
     Button,
     Divider,
+    Tooltip,
 } from "@mui/material";
 
 import useGetStories from "../hooks/useGetStories";
@@ -97,26 +98,28 @@ const Home = () => {
                     >
                         [Links]
                     </Typography>
-                    <Box sx={{}}>
-                        <FaFacebook
-                            style={{
-                                color: "rgb(224, 213, 207)",
-                                marginRight: ".5em",
-                            }}
-                        />
-                        <FaTwitter
-                            style={{
-                                color: "rgb(224, 213, 207)",
-                                marginRight: ".5em",
-                            }}
-                        />
-                        <FaInstagram
-                            style={{
-                                color: "rgb(224, 213, 207)",
-                                marginRight: ".5em",
-                            }}
-                        />
-                    </Box>
+                    <Tooltip title="Coming Soon!" placement="left">
+                        <Box>
+                            <FaFacebook
+                                style={{
+                                    color: "rgb(224, 213, 207)",
+                                    marginRight: ".5em",
+                                }}
+                            />
+                            <FaTwitter
+                                style={{
+                                    color: "rgb(224, 213, 207)",
+                                    marginRight: ".5em",
+                                }}
+                            />
+                            <FaInstagram
+                                style={{
+                                    color: "rgb(224, 213, 207)",
+                                    marginRight: ".5em",
+                                }}
+                            />
+                        </Box>
+                    </Tooltip>
                     <Link to="subscribe" className="hover-underline">
                         Subscribe
                     </Link>
