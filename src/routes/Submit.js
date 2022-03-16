@@ -136,10 +136,11 @@ const Submit = () => {
                     >
                         Submissions submitted must be your own and unpublished.
                         We only accept submissions that have not been previously
-                        published. SICKTOOTH acquires First Electronic Rights.
-                        Once your work has been published, all rights revert
-                        back to you. A one-time payment of $10 USD will be
-                        remitted upon publication.
+                        published. SICKTOOTH acquires First Electronic Rights
+                        and archival rights for a period of five years. Once
+                        your work has been published, all rights revert back to
+                        you. A one-time payment of $10 USD will be remitted upon
+                        publication.
                     </Typography>
                     <TextField
                         className="text-input"
