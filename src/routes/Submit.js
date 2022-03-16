@@ -130,7 +130,7 @@ const Submit = () => {
                     <Typography
                         color="primary"
                         sx={{
-                            margin: "0 1rem",
+                            margin: "0 1.1rem",
                             textAlign: "justify",
                         }}
                     >
