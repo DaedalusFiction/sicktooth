@@ -139,7 +139,7 @@ const Submit = () => {
                         published. SICKTOOTH acquires First Electronic Rights
                         and archival rights for a period of five years. Once
                         your work has been published, all rights revert back to
-                        you. A one-time payment of $10 USD will be remitted upon
+                        you. A one-time payment of $35 USD will be remitted upon
                         publication.
                     </Typography>
                     <TextField
