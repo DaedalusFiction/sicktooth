@@ -125,7 +125,7 @@ const Submit = () => {
                         color="primary"
                         sx={{ textAlign: "center" }}
                     >
-                        Submit a Story for Judgment
+                        Submit Your Work
                     </Typography>
                     <Typography
                         color="primary"
@@ -134,11 +134,20 @@ const Submit = () => {
                             textAlign: "justify",
                         }}
                     >
-                        Submissions submitted must be your own and unpublished.
-                        We only accept submissions that have not been previously
-                        published. SICKTOOTH acquires First Electronic Rights
-                        and archival rights for a period of five years. A one-time payment of $35 USD will be remitted upon
-                        publication.
+                        Submissions must be your own. For short stories and
+                        creative non-fiction, any length is fine, though 3-5000
+                        words is ideal. For poetry, please submit 3-8 poems at a
+                        time. Simultaneous submissions are permitted, but please
+                        notify us immediately if your manuscript is accepted
+                        elsewhere. Excerpts of larger works will be considered
+                        so long as they have not been published electronically
+                        elsewhere. SICKTOOTH acquires First Electronic Rights
+                        and archival rights for a period of three years. All
+                        submissions will be read, and you can expect a response
+                        within two weeks. If you do not hear back by then, feel
+                        free to contact us about the status of your manuscript.
+                        A one-time payment of $25 will be paid through PayPal
+                        for each short story, article, or collection of poems.
                     </Typography>
                     <TextField
                         className="text-input"
@@ -192,7 +201,7 @@ const Submit = () => {
                         </Select>
                     </FormControl>
                     <Typography color="primary" sx={{ margin: "0 1em" }}>
-                        Upload a .docx, .doc, or .rtf
+                        Upload a .docx, .doc, or .rtf file
                     </Typography>
                     <Button variant="contained" component="label">
                         Select File
