@@ -144,10 +144,11 @@ const Submit = () => {
                         elsewhere. SICKTOOTH acquires First Electronic Rights
                         and archival rights for a period of three years. All
                         submissions will be read, and you can expect a response
-                        within two weeks. If you do not hear back by then, feel
-                        free to contact us about the status of your manuscript.
-                        A one-time payment of $25 will be paid through PayPal
-                        for each short story, article, or collection of poems.
+                        within two weeks. A one-time payment of $25 will be paid
+                        through PayPal for each short story, article, or
+                        collection of poems. If you do not hear back by then,
+                        feel free to contact us about the status of your
+                        manuscript.
                     </Typography>
                     <TextField
                         className="text-input"

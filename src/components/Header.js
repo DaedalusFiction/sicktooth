@@ -9,30 +9,22 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { FaTooth } from "react-icons/fa";
 
 const Header = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
-    const [anchorElUser, setAnchorElUser] = useState(null);
-
-    const pages = ["Products", "Pricing", "Blog"];
+    const [currentPage, setCurrentPage] = useState("home");
+    const location = useLocation();
+    useEffect(() => {}, []);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
     };
 
     return (
@@ -73,17 +65,38 @@ const Header = () => {
                     </Link>
                     <Box sx={{ display: { xs: "none", md: "flex" } }}>
                         <Link to="about">
-                            <Button variant="text" color="secondary">
+                            <Button
+                                variant="text"
+                                color={
+                                    location.pathname === "/about"
+                                        ? "tertiary"
+                                        : "secondary"
+                                }
+                            >
                                 About
                             </Button>
                         </Link>
                         <Link to="submit">
-                            <Button variant="text" color="secondary">
+                            <Button
+                                variant="text"
+                                color={
+                                    location.pathname === "/submit"
+                                        ? "tertiary"
+                                        : "secondary"
+                                }
+                            >
                                 Submit
                             </Button>
                         </Link>
                         <Link to="archive">
-                            <Button variant="text" color="secondary">
+                            <Button
+                                variant="text"
+                                color={
+                                    location.pathname === "/archive"
+                                        ? "tertiary"
+                                        : "secondary"
+                                }
+                            >
                                 Archive
                             </Button>
                         </Link>

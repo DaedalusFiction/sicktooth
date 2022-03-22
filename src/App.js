@@ -22,6 +22,7 @@ const theme = createTheme({
         },
         text: {
             primary: "rgb(224, 213, 207)",
+            secondary: "rgb(224, 213, 207)",
         },
         primary: {
             //dark brown
