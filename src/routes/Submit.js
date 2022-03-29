@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
     Container,
     Box,
@@ -18,6 +18,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import Notification from "../components/Notification";
 import emailjs from "@emailjs/browser";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 const Submit = () => {
     const [author, setAuthor] = useState("");
     const [email, setEmail] = useState("");
@@ -25,9 +26,30 @@ const Submit = () => {
     const [genre, setGenre] = useState("");
     const [file, setFile] = useState(null);
     const [error, setError] = useState(false);
+    const [userID, setUserID] = useState(null);
 
     //Notification
     const [open, setOpen] = useState(false);
+    const [displayName, setDisplayName] = useState("");
+
+    useEffect(() => {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                const uid = user.uid;
+                console.log(user.uid);
+                console.log(user.displayName);
+                setDisplayName(user.displayName);
+                setUserID(user.uid);
+                // ...
+            } else {
+                // User is signed out
+                // ...
+            }
+        });
+    }, []);
 
     const handleGenreChange = (e) => {
         setGenre(e.target.value);
@@ -80,6 +102,8 @@ const Submit = () => {
             title: title,
             email: email,
             genre: genre,
+            userID: userID,
+            displayName: displayName,
         };
 
         const docRef = doc(db, "submissions", author);
