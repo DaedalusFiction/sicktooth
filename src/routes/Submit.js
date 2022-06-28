@@ -10,7 +10,6 @@ import {
     Select,
     MenuItem,
     Typography,
-    createTheme,
 } from "@mui/material";
 import { storage } from "../firebase";
 import { ref, uploadBytesResumable } from "firebase/storage";

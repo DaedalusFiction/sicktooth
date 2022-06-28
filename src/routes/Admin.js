@@ -121,7 +121,7 @@ const Admin = () => {
                 test
             </Button> */}
             {currentUser && currentUser.uid === "6OpS62AAUzcxy2z3IaHtQWdkiel1" && (
-                <Paper color="seconary" sx={{ padding: "1em" }}>
+                <Paper color="secondary" sx={{ padding: "1em" }}>
                     <Box
                         sx={{
                             display: "flex",
